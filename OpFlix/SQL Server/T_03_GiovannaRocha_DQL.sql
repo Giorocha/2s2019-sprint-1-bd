@@ -29,5 +29,13 @@ from Lancamentos as L
 join Identificacoes
 on Identificacoes.IdIdentificacao = L.IdIdentificacao
 
+create Procedure ChamaData
+as
+select Titulo, DataLancamento from Lancamentos 
+go
+
+exec ChamaData
+
+
 
 
