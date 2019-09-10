@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.OpFlix.WebApi.Domains;
@@ -22,12 +23,14 @@ namespace Senai.OpFlix.WebApi.Controllers
             CategoriaRepository = new CategoriaRepository();
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(CategoriaRepository.Listar());
         }
 
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Cadastrar(Categorias categoria)
         {
@@ -42,6 +45,7 @@ namespace Senai.OpFlix.WebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPut]
         public IActionResult Atualizar(Categorias categoria)
         {

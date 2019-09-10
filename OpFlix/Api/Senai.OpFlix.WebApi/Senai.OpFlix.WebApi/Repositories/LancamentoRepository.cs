@@ -12,14 +12,28 @@ namespace Senai.OpFlix.WebApi.Repositories
     {
         public void Atualizar(Lancamentos lancamento)
         {
-            throw new NotImplementedException();
+            using (OpFlixContext ctx = new OpFlixContext())
+            {
+                Lancamentos LancamentosRetornado = ctx.Lancamentos.FirstOrDefault(x => x.IdLancamento == lancamento.IdLancamento);
+                LancamentosRetornado.Titulo = lancamento.Titulo;
+                LancamentosRetornado.Sinopse = lancamento.Sinopse;
+                LancamentosRetornado.DuracaoMin = lancamento.DuracaoMin;
+                LancamentosRetornado.DataLancamento = lancamento.DataLancamento;
+                LancamentosRetornado.IdPlataforma = lancamento.IdPlataforma;
+                LancamentosRetornado.IdCategoria = lancamento.IdCategoria;
+                LancamentosRetornado.IdClassificao = lancamento.IdClassificao;
+                LancamentosRetornado.IdTipoLancamento = lancamento.IdTipoLancamento;
+                ctx.Lancamentos.Update(LancamentosRetornado);
+                ctx.SaveChanges();
+
+            }
         }
 
         public Lancamentos BuscarPorId(int id)
         {
             using (OpFlixContext ctx = new OpFlixContext())
             {
-                return ctx.Lancamentos.FirstOrDefault(x => x.IdLancamento == id);
+                return ctx.Lancamentos.Include(x => x.IdPlataformaNavigation).Include(x => x.IdCategoriaNavigation).Include(x => x.IdClassificaoNavigation).Include(x => x.IdTipoLancamentoNavigation).FirstOrDefault(x => x.IdLancamento == id);
 
             }
         }
