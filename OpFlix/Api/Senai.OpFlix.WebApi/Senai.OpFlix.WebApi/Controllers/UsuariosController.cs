@@ -26,6 +26,7 @@ namespace Senai.OpFlix.WebApi.Controllers
             UsuarioRepository = new UsuarioRepository();
         }
 
+
         [HttpPost]
         public IActionResult Cadastrar (Usuarios usuario)
         {
