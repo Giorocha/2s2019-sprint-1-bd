@@ -34,6 +34,13 @@ ON L.IdClassificao = Cl.IdClassificacao
 JOIN TipoLancamento TL
 ON L.IdTipoLancamento = TL.IdTipoLancamento
 
+SELECT U.Nome, L.Titulo
+FROM Usuarios U
+JOIN Favoritos F
+ON U.IdUsuario = F.IdUsuario
+JOIN Lancamentos L
+ON L.IdLancamento = F.IdLancamento
+
 CREATE PROCEDURE BuscarFilmePorCategoria @Categoria VARCHAR(255)
 AS
 SELECT IdLancamento, Titulo, IdCategoria

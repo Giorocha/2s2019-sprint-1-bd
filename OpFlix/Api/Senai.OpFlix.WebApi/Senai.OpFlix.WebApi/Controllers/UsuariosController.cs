@@ -74,9 +74,9 @@ namespace Senai.OpFlix.WebApi.Controllers
                     token = new JwtSecurityTokenHandler().WriteToken(token)
                 });
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                return BadRequest(new { mensagem = "Erro ao tentar encontrar um usuario"});
+                return BadRequest(new { mensagem = "Erro ao tentar encontrar um usuario" + ex});
             }
         }
 

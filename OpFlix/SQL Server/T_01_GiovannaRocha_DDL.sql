@@ -66,3 +66,9 @@ ADD DuracaoMin INT NOT NULL
 ALTER TABLE Lancamentos
 ALTER COLUMN Sinopse VARCHAR(600)
 
+CREATE TABLE Favoritos
+(
+	ID					INT PRIMARY KEY IDENTITY 
+	,IdUsuario			INT FOREIGN KEY REFERENCES Usuarios (IdUsuario)
+	,IdLancamento		INT FOREIGN KEY REFERENCES Lancamentos (IdLancamento)
+);

@@ -5,6 +5,11 @@ namespace Senai.OpFlix.WebApi.Domains
 {
     public partial class Usuarios
     {
+        public Usuarios()
+        {
+            Favoritos = new HashSet<Favoritos>();
+        }
+
         public int IdUsuario { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
@@ -12,5 +17,6 @@ namespace Senai.OpFlix.WebApi.Domains
         public int? IdTipoUsuario { get; set; }
 
         public TipoUsuario IdTipoUsuarioNavigation { get; set; }
+        public ICollection<Favoritos> Favoritos { get; set; }
     }
 }

@@ -71,6 +71,9 @@ ele e seu grupo deverão proteger o objeto para salvar o futuro da galáxia.', '12
 Para escapar do perigo, ele faz uma aliança com um grupo de quatro extraterrestres. Quando Quill descobre que a esfera roubada possui um poder capaz de mudar os rumos do universo, 
 ele e seu grupo deverão proteger o objeto para salvar o futuro da galáxia.', '125', '2014-07-31T00:00:00',1,6,3,1)
 
+INSERT INTO Favoritos (IdUsuario, IdLancamento) 
+VALUES	(1,6),(1,4),(2,3),(3,1),(4,5)
+
 SELECT * FROM Categorias ORDER BY IdCategoria ASC
 SELECT * FROM Plataformas ORDER BY IdPlataforma ASC
 SELECT * FROM Classificacoes ORDER BY IdClassificacao ASC
@@ -78,3 +81,4 @@ SELECT * FROM TipoUsuario ORDER BY IdTipoUsuario ASC
 SELECT * FROM TipoLancamento ORDER BY IdTipoLancamento ASC
 SELECT * FROM Usuarios ORDER BY IdUsuario ASC
 SELECT * FROM Lancamentos ORDER BY IdLancamento ASC
+select * from Favoritos
