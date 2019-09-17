@@ -29,16 +29,6 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
-        public Lancamentos BuscarPorDataLancamento(DateTime data)
-        {
-            using (OpFlixContext ctx = new OpFlixContext())
-            {
-                Lancamentos lancamento = ctx.Lancamentos.Include(x => x.IdCategoriaNavigation).Include(x => x.IdClassificaoNavigation).Include(x => x.IdPlataformaNavigation).Include(x => x.IdTipoLancamentoNavigation).FirstOrDefault(x => x.DataLancamento == data);
-            return lancamento;
-
-            }
-        }
-
         public Lancamentos BuscarPorId(int id)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -48,16 +38,7 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
-        public Lancamentos BuscarPorPlataforma(string nome)
-        {
-            using (OpFlixContext ctx = new OpFlixContext())
-            {
-
-                Lancamentos lancamento = ctx.Lancamentos.Include(x => x.IdCategoriaNavigation).Include(x => x.IdClassificaoNavigation).Include(x => x.IdTipoLancamentoNavigation).FirstOrDefault(x => x.IdPlataformaNavigation.Nome == nome);
-            return lancamento;
-            }
-        }
-
+       
         public void Cadastrar(Lancamentos lancamento)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -83,6 +64,21 @@ namespace Senai.OpFlix.WebApi.Repositories
             {
                 return ctx.Lancamentos.Include(x => x.IdPlataformaNavigation).Include(x => x.IdCategoriaNavigation).Include(x => x.IdClassificaoNavigation).Include(x => x.IdTipoLancamentoNavigation).ToList();
             }
+        }
+
+        public List<Lancamentos> BuscarPorPlataforma(string nome)
+        {
+            using (OpFlixContext ctx = new OpFlixContext())
+
+                return ctx.Lancamentos.Include(x => x.IdPlataformaNavigation).Where(x => x.IdPlataformaNavigation.Nome == nome).ToList();
+            
+        }
+
+        public List<Lancamentos> BuscarPorDataLancamento(DateTime data)
+        {
+            using (OpFlixContext ctx = new OpFlixContext())
+
+                return ctx.Lancamentos.Where(x => x.DataLancamento == data).ToList();
         }
     }
 }
